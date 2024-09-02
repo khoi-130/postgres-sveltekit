@@ -11,7 +11,7 @@
 	};
 
 	const navigateToSignUp = ()  => {
-	  goto('./sign-up')	
+	  goto('/sign-up')	
 	};
 
 	const navigateToAbout = () => {
