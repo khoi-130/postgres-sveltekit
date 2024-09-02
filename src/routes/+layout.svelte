@@ -86,14 +86,7 @@
   <slot />
 </main>
 <footer class="bg-white bg-opacity-20 shadow-md p-5 mt-10">
-  <div class="grid grid-cols-2 gap-20">
-    <div>
-      <ul class="list-none pl-5">
-        <li class="font-bold text-lg">PROJECT: PROTOTYPE</li>
-        <li class="text-white">© 2023 - 2024</li>
-        <li class="text-white">Privacy — Terms</li>
-      </ul>
-    </div>
+  <div>
     <div>
       <ul class="list-none text-right pr-20">
         <button on:click={naviagetoFaq}>FAQ</button>
