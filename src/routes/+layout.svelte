@@ -6,6 +6,7 @@
   import SignedOut from "clerk-sveltekit/client/SignedOut.svelte";
   import SignInButton from "clerk-sveltekit/client/SignInButton.svelte";
   import SignUpButton from "clerk-sveltekit/client/SignUpButton.svelte";
+  import UserButton from "clerk-sveltekit/client/UserButton.svelte";
 
   const navigateToChatbot = () => {
     goto("./chatbot");
@@ -64,14 +65,19 @@
     >
       Contact Us
     </button>
-    <SignInButton
-      class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500"
-      >Sign in</SignInButton
-    >
-    <SignUpButton
-      class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500"
-      >Sign up</SignUpButton
-    >
+    <SignedIn>
+      <UserButton afterSignOutUrl="/" />
+    </SignedIn>
+    <SignedOut>
+      <SignInButton
+        class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500"
+        >Sign in</SignInButton
+      >
+      <SignUpButton
+        class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500"
+        >Sign up</SignUpButton
+      >
+    </SignedOut>
   </nav>
 </header>
 <main
