@@ -1,7 +1,7 @@
 <script type="ts">
-	import SignIn from '$lib/client/SignIn.svelte'
+	import SignIn from 'clerk-sveltekit/client/SignIn.svelte'
 </script>
 
 <div class="flex items-center justify-center mt-16">
-	<SignIn afterSignInUrl="./chatbot" />
+	<SignIn afterSignInUrl="/chatbot" />
 </div>

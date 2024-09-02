@@ -1,11 +1,13 @@
 import type { HandleClientError } from '@sveltejs/kit'
-import { initializeClerkClient } from './lib/client/index.js'
-// import { initializeClerkClient } from './lib/headless/index.js'
+// To use Clerk components:
+import { initializeClerkClient } from 'clerk-sveltekit/client'
+// Or for headless mode:
+// import { initializeClerkClient } from 'clerk-sveltekit/headless'
 import { PUBLIC_CLERK_PUBLISHABLE_KEY } from '$env/static/public'
 
 initializeClerkClient(PUBLIC_CLERK_PUBLISHABLE_KEY, {
-	afterSignInUrl: '/admin/',
-	afterSignUpUrl: '/admin/',
+	afterSignInUrl: '/chatbot/',
+	afterSignUpUrl: '/chatbot/',
 	signInUrl: '/sign-in',
 	signUpUrl: '/sign-up',
 })

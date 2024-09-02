@@ -1,7 +1,11 @@
 <script>
 	import ___ASSET___0 from '../lib/images/night-image.png';
 	import { goto } from '$app/navigation';
-  
+	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte';
+	import SignedOut from 'clerk-sveltekit/client/SignedOut.svelte';
+	import SignInButton from 'clerk-sveltekit/client/SignInButton.svelte';
+	import SignUpButton from 'clerk-sveltekit/client/SignUpButton.svelte';
+
 	const navigateToChatbot = () => {
 	  goto('./chatbot');
 	};
@@ -52,10 +56,8 @@
 			class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500">
 			Contact Us
 		  </button>
-		  <button on:click={navigateToSignUp}
-			class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500">
-			Sign Up
-		  </button>
+		  <SignInButton class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500">Sign in</SignInButton>
+		  <SignUpButton class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500">Sign up</SignUpButton>
 		</nav>
 	  </header>
 	
