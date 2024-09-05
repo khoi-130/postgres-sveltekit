@@ -1,6 +1,15 @@
 <script>
+  let showPopup = true;
+
+const acceptCookies = () => {
+  showPopup = false;
+};
+
+const dismissPopup = () => {
+  showPopup = false;
+};
+
   import "../app.css";
-  import ___ASSET___0 from "../lib/images/night-image.png";
   import { goto } from "$app/navigation";
   import SignedIn from "clerk-sveltekit/client/SignedIn.svelte";
   import SignedOut from "clerk-sveltekit/client/SignedOut.svelte";
@@ -35,14 +44,21 @@
   const navigateToTermsAndService = () => {
     goto("/terms");
   };
+
+  const navigateToMainPage = () => {
+    goto("/")
+  }
 </script>
 
-<header
-  class="flex justify-between items-center px-10 py-5 bg-white bg-opacity-20 shadow-md"
->
-  <div class="text-2xl font-bold">Flirting App</div>
+<header class="flex justify-between items-center px-10 py-5 bg-fixed bg-cover bg-center" style="background-image: url('/src/lib/images/flower-header.jpg');">
+  <div>
+    <div class="text-4xl font-extrabold text-pink-600">FlirtWise</div>
+    <br>
+    <div class="text-xl italic text-gray-200 animate-slideIn">Let Us Unlock Your Charm</div>
+</div>
+
   <nav class="flex space-x-4">
-    <button
+    <button on:click={navigateToMainPage}
       class="bg-yellow-400 text-gray-800 font-bold py-2 px-4 text-lg rounded-full shadow-md focus:outline-none focus:shadow-outline transform active:scale-95 transition duration-150 ease-in-out hover:bg-yellow-500"
     >
       Home
@@ -80,26 +96,26 @@
     </SignedOut>
   </nav>
 </header>
-<main
-  class="font-monte flex flex-col min-h-screen bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white"
->
+<main class="flex flex-col min-h-screen">
   <slot />
 </main>
-<footer class="bg-white bg-opacity-20 shadow-md p-5 mt-10">
+<footer class="bg-black bg-opacity-20 shadow-md p-5 mt-5">
   <div class="grid grid-cols-2 gap-20">
     <div>
       <ul class="list-none pl-5">
         <li class="font-bold text-lg">PROJECT: PROTOTYPE</li>
-        <li class="text-white">© 2023 - 2024</li>
-        <li class="text-white">Privacy — Terms</li>
+        <li class="text-black">© FlirtWise Limited Ltd. All Rights Reserved.</li>
       </ul>
     </div>
     <div>
       <ul class="list-none text-right pr-20">
-        <button on:click={naviagetoFaq}>FAQ</button>
+        <button on:click={naviagetoFaq} class="underline">FAQ</button>
         <br />
-        <button on:click={navigateToTermsAndService}>Terms of Service</button>
+        <button on:click={navigateToTermsAndService} class="underline">Terms of Service</button>
       </ul>
     </div>
   </div>
 </footer>
+
+
+

@@ -17,7 +17,7 @@
 
     interface ChatMessage {
         text: string;
-        type: 'user' | 'bot';
+        type: 'user' | 'bot'; 
     }
 
     // Function to call your API, expecting a reply based on the user message and current conversation history
