@@ -3,12 +3,14 @@
     import Message from "$lib/Components/Message.svelte";
     import { writable } from 'svelte/store'
 	import { onMount } from "svelte";
+    import { profileShared } from "../../Store";
 
     let userMessage = '';
     let chatMessages =  writable<ChatMessage[]>([]);
     let conversationHistory: ConversationEntry[] = []; // Store conversation history here
     let counter = 0;
     let readInputOnly = false;
+
 
     interface ConversationEntry {
         role: string;
@@ -21,7 +23,7 @@
     }
 
     // Function to call your API, expecting a reply based on the user message and current conversation history
-    const callMessagesGPT = async (userMsg : string, convHistory: ConversationEntry[]) => {
+    const callMessagesGPT = async (userMsg : string, convHistory: ConversationEntry[], prefs: any) => {
         try {
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -30,7 +32,8 @@
                 },
                 body: JSON.stringify({
                     userMsg,
-                    conversationHistory: convHistory
+                    conversationHistory: convHistory,
+                    preferences: prefs
                 })
             });
             if (!response.ok) {
@@ -48,7 +51,7 @@
         conversationHistory.push({ role: "user", content: userMessage });
         chatMessages.update(messages => [...messages, { text: userMessage, type: 'user' }]);
         
-        const response = await callMessagesGPT(userMessage, conversationHistory);
+        const response = await callMessagesGPT(userMessage, conversationHistory, profileShared);
         if (response) {
             conversationHistory.push({ role: "assistant", content: response.botReply });
             chatMessages.update(messages => [...messages, { text: response.botReply, type: 'bot' }]);
@@ -67,7 +70,8 @@
         // Assuming you don't have a specific user message to send at this point,
         // you might just send an empty message or a specific flag to indicate this is the initial load
         const initialMessage = ""; // or any initial message if you have one
-        const response = await callMessagesGPT(initialMessage, conversationHistory);
+
+        const response = await callMessagesGPT(initialMessage, conversationHistory, profileShared);
         if (response) {
             conversationHistory.push({ role: "assistant", content: response.botReply });
             chatMessages.update(messages => [...messages, { text: response.botReply, type: 'bot' }]);
@@ -91,8 +95,8 @@
       <div class="w-9/12 h-90 mx-4 my-5 rounded-xl bg-white border border-black shadow-lg p-5 flex flex-col justify-between overflow-y-auto mb-5">
         {#if $chatMessages.length > 0}
           {#each $chatMessages as msg}
-            <Message message={msg.text} sender={msg.sender} class="mb-2 p-3 rounded-md bg-gradient-to-r from-green-200 to-blue-200 shadow-md" />
-          {/each}
+          <div> {msg.text}</div>
+    {/each}
         {/if}
         <div class="mt-auto flex items-center">
           <input type="text" bind:value={userMessage} readonly="{readInputOnly}" class="bg-white w-full p-4 border border-black rounded-l-md outline-none text-base text-black placeholder-gray-500 shadow-inner" placeholder="Type your message...">

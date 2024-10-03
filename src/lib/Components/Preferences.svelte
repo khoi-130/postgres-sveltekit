@@ -1,5 +1,9 @@
-<script>
+<script lang='ts'>
+// @ts-nocheck
+
     import { writable } from 'svelte/store';
+    import { profileShared } from '../../Store';
+    import { invalidate } from '$app/navigation';
 
     // Initialize writable stores for each preference
     export let age = writable(18);
@@ -9,6 +13,11 @@
     export let politeness = writable(1);
     export let spiciness = writable(1);
     export let gender = writable('Not Specified');
+
+    let profile;
+    export let refreshParent; // Receive refreshParent as a prop
+    export let togglePreferences;
+
 
     // Define a reactive array of slider configurations
     let sliders = [
@@ -21,6 +30,10 @@
     ];
 
     // Function to update slider value and sync with corresponding store
+    /**
+   * @param {number} sliderIndex
+   * @param {number} newValue
+   */
     function updateValue(sliderIndex, newValue) {
         const updatedSliders = [...sliders];
         updatedSliders[sliderIndex] = { ...updatedSliders[sliderIndex], value: newValue };
@@ -29,8 +42,16 @@
         sliders[sliderIndex].store.set(newValue);
     }
 
-     async function savePreferences() {
-        // Compile current values from stores
+
+    profileShared.subscribe((data) => {
+        profile = data
+        console.log(profile)
+    })
+
+    async function savePreferences() {
+        console.log(profile)
+
+       // Compile current values from stores
         const currentPreferences = {
             age: $age,
             confidence: $confidence,
@@ -40,11 +61,26 @@
             spiciness: $spiciness,
             gender: $gender
         };
-
         console.log("Saving preferences:", currentPreferences);
 
+        // Updates preferences
+        profileShared.update((currentData) => {
+            console.log("Current Data: ", currentData)
+            return {
+                age: currentPreferences.age,
+                confidence: currentPreferences.confidence,
+                playfulness: currentPreferences.playfulness,
+                warmth: currentPreferences.warmth,
+                politeness: currentPreferences.politeness,
+                spiciness: currentPreferences.spiciness,
+                gender: currentPreferences.gender
+            }
+        })
         // Example: Save the preferences (e.g., to a backend server or local storage)
         // For now, we're just logging to the console
+        togglePreferences();
+        refreshParent();
+
     }
 
 </script>
@@ -74,7 +110,6 @@
 <button class="px-4 py-2 bg-blue-500 text-white rounded-md" on:click={savePreferences}>
     Save Preferences
 </button>
-
 
 <!-- -->
 <style>
