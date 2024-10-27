@@ -30,6 +30,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@vercel/postgres": "^0.5.1",
     "autoprefixer": "^10.4.19",
     "clerk-sveltekit": "^0.4.2",

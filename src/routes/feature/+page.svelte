@@ -4,30 +4,25 @@
   import { onMount } from "svelte";
 
   let features: any;
+  let signUpButton: any;
+
   onMount(() => {
-    const textElements = features.querySelectorAll("h2, p");
+    // Animate each FAQ section to fade in and slide up
+    gsap.from(features.children, {
+      opacity: 0, //Fully invisible
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.3,
+    });
 
-
-    textElements.forEach((el) => {
-      const chars = el.textContent?.split("") || []; 
-      el.innerHTML = ""; 
-
-      chars.forEach((char) => {
-        const span = document.createElement("span");
-        span.textContent = char;
-        el.appendChild(span);
-      });
-
-      gsap.fromTo(
-        el.children,
-        { opacity: 0 }, 
-        {
-          opacity: 1, 
-          stagger: 0.05, 
-          duration: 0.01,
-          ease: "power2.inOut",
-        },
-      );
+    // Animate the sign-up button when it shows up
+    gsap.from(signUpButton, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.3,
     });
   });
   const navigateToSignUp = () => {

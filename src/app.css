@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.floating-hearts::before,
+.floating-hearts::after {
+  content: '❤️';
+  position: absolute;
+  font-size: 2rem;
+  animation: float-heart 5s infinite ease-in-out;
+  opacity: 0.8;
+}
+
+.floating-hearts::before {
+  top: 100%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.floating-hearts::after {
+  top: 100%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+@keyframes float-heart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-50vh) scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+  /* Shiny Text Styling */
+  .shiny-text {
+    /* Basic text styling */
+    font-size: 6rem;
+    font-style: italic;
+    color: #1f2937; /* Gray-800 */
+    position: relative;
+    display: inline-block;
+
+    /* Create a shiny effect using a gradient */
+    background: linear-gradient(
+      to left,
+      rgba(210, 34, 34, 0.817) 20%,
+      rgb(255, 119, 0) 40%,
+      rgba(169, 158, 33, 0.797) 60%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200%;
+  }
+  
+
+

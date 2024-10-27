@@ -48,8 +48,8 @@
     ];
 </script>
 
-<main class="font-monte flex flex-col min-h-screen bg-gray-100 text-gray-900">
-    <div class="flex flex-col items-center justify-center py-10">
+<main class="font-monte flex flex-col min-h-screen bg-orange-50 text-gray-900">
+    <div class="font-serif flex flex-col items-center justify-center py-10">
         <h1 class="text-5xl font-bold mb-10">Meet Our Team</h1>
 
         {#each team as member, index}
