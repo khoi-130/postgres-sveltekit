@@ -17,7 +17,7 @@
 
     interface ChatMessage {
         text: string;
-        type: 'user' | 'bot';
+        type: 'user' | 'bot'; 
     }
 
     // Function to call your API, expecting a reply based on the user message and current conversation history
@@ -40,6 +40,13 @@
         } catch (error) {
             console.error('Error calling POST endpoint:', error);
         }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();  // Prevents the default form submit action
+        handleSubmit();          // Calls handleSubmit when Enter is pressed
+      }
     };
 
     const handleSubmit = async () => {
@@ -83,21 +90,44 @@
     let activePage = '/chatbot';
 </script>
 
-<main class="flex bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 h-screen">
-    <!-- Left Sidebar -->
-    <Navbar sideChats={chats} activePage={activePage} />
-    <!-- Main Content Area -->
-    <div class="flex flex-grow flex-row">
-      <div class="w-9/12 h-90 mx-4 my-5 rounded-xl bg-white border border-black shadow-lg p-5 flex flex-col justify-between overflow-y-auto mb-5">
+<main class="flex h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500">
+    <!-- Left Sidebar (Navbar) -->
+    <Navbar sideChats={chats} activePage={activePage} class="w-2/12 bg-white shadow-lg" />
+  
+    <!-- Chat Area -->
+    <div class="flex flex-grow flex-col justify-between h-full mx-4 my-5 bg-white rounded-lg shadow-lg overflow-hidden">
+      <!-- Chat Messages Area -->
+      <div class="flex flex-col p-6 space-y-4 overflow-y-auto h-full">
         {#if $chatMessages.length > 0}
           {#each $chatMessages as msg}
-            <Message message={msg.text} sender={msg.sender} class="mb-2 p-3 rounded-md bg-gradient-to-r from-green-200 to-blue-200 shadow-md" />
+            <div class="flex {msg.type === 'user' ? 'justify-end' : 'justify-start'}">
+              <div class="max-w-xs md:max-w-md p-4 rounded-lg shadow-md 
+                          {msg.type === 'user' ? 'bg-blue-400 text-white self-end' : 'bg-gray-200 text-gray-800 self-start'}">
+                {msg.text}
+              </div>
+            </div>
           {/each}
         {/if}
-        <div class="mt-auto flex items-center">
-          <input type="text" bind:value={userMessage} readonly="{readInputOnly}" class="bg-white w-full p-4 border border-black rounded-l-md outline-none text-base text-black placeholder-gray-500 shadow-inner" placeholder="Type your message...">
-          <button on:click={handleSubmit} class="w-16 h-16 bg-yellow-400 border-black rounded-r-md text-black text-base cursor-pointer hover:bg-yellow-500 shadow-md">Send</button>
+      </div>
+  
+      <!-- Input Area -->
+      <div class="bg-gray-100 p-4 border-t border-gray-300">
+        <div class="flex items-center space-x-2">
+          <input 
+            type="text" 
+            bind:value={userMessage} 
+            readonly={readInputOnly} 
+            on:keydown={handleKeyDown}
+            class="w-full px-4 py-3 border border-gray-300 rounded-md text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            placeholder="Type your message..." 
+          />
+          <button 
+            on:click={handleSubmit} 
+            class="px-4 py-3 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-md shadow-md transition ease-in-out duration-200">
+            Send
+          </button>
         </div>
       </div>
     </div>
   </main>
+  
