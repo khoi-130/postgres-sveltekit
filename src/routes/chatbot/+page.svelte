@@ -154,6 +154,7 @@
     let removable: any
 </script>
 
+
 <main class="bg-gradient-to-r from-[#65081F] to-[#800020] h-screen">
     <div class="basis-1/6 flex flex-row h-full">
         <div class="preferences-panel bg-[#1C1C1C] h-full">
@@ -209,3 +210,4 @@
         height: 100vh;
     }
 </style>
+
