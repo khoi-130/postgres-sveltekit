@@ -5,6 +5,7 @@
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
 
+  export const prerender = true;
 
 
   const navigateToAbout = () => {
@@ -32,6 +33,9 @@
   };
 
 </script>
+
+
+
 
 
 <header class="flex justify-between items-center px-3 py-1 bg-fixed bg-cover bg-center">  
@@ -104,3 +108,4 @@ Right Column: Links (Table with 2 rows and 3 columns, reduced gap)
     Built with ❤️ by Love Ascend Team
   </div>
 </footer>
+
