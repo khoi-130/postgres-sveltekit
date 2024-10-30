@@ -8,8 +8,11 @@
   import SignUpButton from "clerk-sveltekit/client/SignUpButton.svelte";
   import UserButton from "clerk-sveltekit/client/UserButton.svelte";
 
+
   // Import GSAP globally
   import { gsap } from "gsap";
+    import Header from "$lib/Components/Header.svelte";
+    import Footer from "$lib/Components/Footer.svelte";
 
   const navigateToFeature = () => {
     goto("./feature")
@@ -71,6 +74,8 @@
     }
   };
 </script>
+
+<main>
 
 <!-- First Section with Clickable Accordion -->
 <div class="flex flex-col lg:flex-row bg-rose-900 opacity-100 fade-in">
@@ -197,3 +202,5 @@
     <button class="mt-8 px-6 py-3 bg-white text-red-600 border border-red-600 text-lg font-semibold shadow-md hover:bg-red-600 hover:text-white transition ease-in-out duration-200 transform hover:scale-105">Tutorial</button>
   </div>
 </div>
+<Footer/>
+</main>

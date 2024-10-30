@@ -63,7 +63,7 @@
             name="from_name"
             bind:value={name}
             class="w-full px-4 py-2 text-lg border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="Khoi Anh Ngo"
+            placeholder="Type your name in here"
             required
           />
         </div>
