@@ -9,8 +9,16 @@
     const navigateToMainPage = () => {
       goto("/");
     };
-  
 
+    onMount(() => {
+        // Animation for the sliding text
+        gsap.from(".slide-in-from-right", {
+            x: 100,       // start 100px to the right
+            opacity: 0,   // start fully transparent
+            duration: 1,  // duration of the animation
+            ease: "power2.out" // easing effect
+        });
+    });
   
   </script>
 <main>

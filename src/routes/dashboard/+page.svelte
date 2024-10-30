@@ -151,7 +151,7 @@
             <button class="image-container" id="container-3">
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{aboutus}" alt="a question mark"/>
-                <span class="headers">about us</span>
+                <span class="headers">outfit styler</span>
             </button>
         </section>
         <section class="panel" style="background-color: lightgoldenrodyellow;">
@@ -166,7 +166,7 @@
 
 <style>
 
-    :global(html, body) {
+    :global(body) {
         margin: 0;
         padding: 0;
         width: 100dvw;

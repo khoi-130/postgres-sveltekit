@@ -31,7 +31,7 @@
       <!-- Left Column: Company Info -->
       <div>
         <ul class="list-none space-y-2">
-          <li class="font-bold text-black text-xl tracking-wide uppercase">Capstone Project</li>
+          <li class="font-bold text-black text-xl tracking-wide uppercase">:)</li>
           <li class="text-sm text-gray-400">© Love Ascend Limited Ltd. All Rights Reserved.</li>
         </ul>
       </div>
