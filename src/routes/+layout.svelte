@@ -32,6 +32,9 @@
 </script>
 
 
+
+
+
 <header class="flex justify-between items-center px-3 py-1 bg-fixed bg-cover bg-center">  
   <button on:click={navigateToMainPage}>
     <img class="w-max rounded-lg shadow-lg border-9 fade-in-image"
@@ -102,3 +105,4 @@
     Built with ❤️ by Love Ascend Team
   </div>
 </footer>
+
