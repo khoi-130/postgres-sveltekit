@@ -29,7 +29,7 @@
 
     interface ChatMessage {
         text: string;
-        type: 'user' | 'bot';
+        type: 'user' | 'bot'; 
     }
 
     // Function to call your API, expecting a reply based on the user message and current conversation history
@@ -53,6 +53,13 @@
         } catch (error) {
             console.error('Error calling POST endpoint:', error);
         }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();  // Prevents the default form submit action
+        handleSubmit();          // Calls handleSubmit when Enter is pressed
+      }
     };
 
     const handleSubmit = async () => {
@@ -154,6 +161,7 @@
     let removable: any
 </script>
 
+
 <main class="bg-gradient-to-r from-[#65081F] to-[#800020] h-screen">
     <div class="basis-1/6 flex flex-row h-full">
         <div class="preferences-panel bg-[#1C1C1C] h-full">
@@ -209,3 +217,4 @@
         height: 100vh;
     }
 </style>
+

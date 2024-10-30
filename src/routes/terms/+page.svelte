@@ -1,10 +1,27 @@
-<script>
+<script lang="ts">
+  import { gsap } from "gsap";
   import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
+
+  let terms: any;
+  onMount(() => {
+    gsap.from(terms.children, {
+      opacity: 0, //Fully invisible
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.3,
+    });
+  });
 </script>
 
-<div class="flex-grow flex flex-col items-center justify-center px-10 py-20">
+<div
+  bind:this={terms}
+  class="flex-grow flex flex-col items-center justify-center px-10 py-20"
+>
   <h1 class="text-5xl font-bold mb-10">Terms & Service</h1>
   <div
+    bind:this={terms}
     class="w-full max-w-4xl bg-white bg-opacity-20 p-10 rounded-lg shadow-lg text-left"
   >
     <div class="mb-8">
