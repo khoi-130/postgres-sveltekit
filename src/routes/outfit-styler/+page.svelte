@@ -101,8 +101,9 @@
         font-style: normal;
     }
 
-    :global(html, body) {
-        background: linear-gradient(135deg, #80d1fa, #0077cc);
+    :global(body) {
+        background: linear-gradient(135deg, #855d6a, #881337);
+        font-family: BreadleySans, sans-serif;
     }
 
     main {
@@ -111,7 +112,6 @@
         align-items: center;
         min-height: 100vh;
         padding: 2rem;
-        font-family: sans-serif;
     }
 
     .budget-options {
@@ -127,12 +127,12 @@
         text-align: center;
     }
     h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
         color: white;
     }
 
     label, select {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
         color: white;
     }
 
@@ -155,30 +155,9 @@
         background-color: #fff;
     }
 
-    .range-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 40px;
-        height: 40px;
-        background-image: url("/images/heart.png");
-        background-size: contain;
-        background-position: center center;
-        cursor: pointer;
-        border: none; /* Remove border if any */
-    }
-
-    .range-slider::-moz-range-thumb {
-        width: 40px;
-        height: 40px;
-        background: url("/images/heart.png") no-repeat center center;
-        background-size: contain;
-        cursor: pointer;
-        border: none;
-    }
-
     button {
         font-size: 1.1rem;
-        color: #0077cc;
+        color: #881337;
         background: white;
         padding: 0.8rem 1.2rem;
         border-radius: 0.75rem;

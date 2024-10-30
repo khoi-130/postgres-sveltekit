@@ -73,7 +73,7 @@
     }
 
     :global(body) {
-        background: linear-gradient(135deg, #80d1fa, #0077cc);
+        background: linear-gradient(135deg, #855d6a, #881337);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -168,7 +168,7 @@
 
     strong {
         font-weight: bold;
-        color: #4a90e2;
+        color: #000000;
     }
 
     /* Responsive adjustments */
