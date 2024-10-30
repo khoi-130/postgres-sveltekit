@@ -1,3 +1,30 @@
+<script>
+    import { goto } from "$app/navigation";
+
+    const navigateToAbout = () => {
+    goto("./about");
+  };
+
+  const navigateToContactUs = () => {
+    goto("./contact");
+  };
+
+  const naviagetoFaq = () => {
+    goto("/FAQ");
+  };
+
+  const navigateToTermsAndService = () => {
+    goto("/terms");
+  };
+
+  const navigateToMainPage = () => {
+    goto("/");
+  };
+
+  const navigateToDraft = () => {
+    goto("/draft");
+  };
+</script>
 <footer class=" bg-opacity-90 text-white shadow-lg p-8 mt-auto">
     <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
       
