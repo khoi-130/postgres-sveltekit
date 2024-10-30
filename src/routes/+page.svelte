@@ -76,7 +76,7 @@
 </script>
 
 <main>
-
+<Header/>
 <!-- First Section with Clickable Accordion -->
 <div class="flex flex-col lg:flex-row bg-rose-900 opacity-100 fade-in">
   <!-- Left Section (Accordion + Title) -->
