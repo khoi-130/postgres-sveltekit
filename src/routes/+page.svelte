@@ -7,67 +7,76 @@
   import SignInButton from "clerk-sveltekit/client/SignInButton.svelte";
   import SignUpButton from "clerk-sveltekit/client/SignUpButton.svelte";
   import UserButton from "clerk-sveltekit/client/UserButton.svelte";
+
+
+  // Import GSAP globally
   import { gsap } from "gsap";
-  import Header from "$lib/Components/Header.svelte";
-  import Footer from "$lib/Components/Footer.svelte";
+    import Header from "$lib/Components/Header.svelte";
+    import Footer from "$lib/Components/Footer.svelte";
 
   const navigateToFeature = () => {
-    goto("./feature");
-  };
+    goto("./feature")
+  }
 
   onMount(() => {
-    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-      gsap.registerPlugin(ScrollTrigger);
+  import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+    gsap.registerPlugin(ScrollTrigger);
 
-      // Fade-in animation for sections
-      gsap.from(".fade-in-section", {
-        opacity: 1,
-        x: 0,
+    // Fade-in animation for sections
+    gsap.from(".fade-in-section", 
+    {
+      opacity: 1,
+        x: 0,  // Move to the original position
         duration: 2.5,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".fade-in-section",
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play reverse play reverse",
-          scrub: true
-        },
-      });
-
-      // Parallax scrolling for background
-      gsap.to(".parallax-bg", {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".parallax-bg",
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-
-      gsap.fromTo(".shiny-text",
-              { backgroundPosition: "200%" },
-              { backgroundPosition: "-200%", duration: 3, ease: "power2.inOut", repeat: -1 }
-      );
+      scrollTrigger: {
+        trigger: ".fade-in-section",
+          start: "top 80%",  // When the top of the section hits 80% of the viewport height
+          end: "bottom 20%",  // When the bottom of the section hits 20% of the viewport
+          toggleActions: "play reverse play reverse",  // Play on scroll down, reverse on scroll up
+          scrub: true  // Smooth scroll animation
+      },
     });
+
+    // Example of parallax scrolling for background
+    gsap.to(".parallax-bg", {
+      yPercent: -20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".parallax-bg",
+        start: "top bottom", 
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+
+    gsap.fromTo(
+      ".shiny-text",
+      { backgroundPosition: "200%" }, // Start position (off the screen)
+      {
+        backgroundPosition: "-200%",   // End position (off the screen on the right)
+        duration: 3,                  // Duration of the effect
+        ease: "power2.inOut",          // Easing function for smooth movement
+        repeat: -1,                   // Infinite repeat
+      }
+    );
+
   });
+});
 
-  let activeIndex: number | null = null; // Initialize activeIndex with explicit type
+  let activeIndex : null; // Track which accordion item is currently open
 
-  // Toggle accordion item
-  const toggleAccordion = (index: number) => {
-    activeIndex = activeIndex === index ? null : index;
+  const toggleAccordion = (index) => {
+    if (activeIndex === index) {
+      activeIndex = null; // Close the accordion if it's already open
+    } else {
+      activeIndex = index; // Open the selected accordion item
+    }
   };
-
-  // Watch for changes to activeIndex
-  $: if (activeIndex !== null) {
-    console.log(`Accordion item ${activeIndex} is open`);
-  }
 </script>
 
 <main>
-<Header/>
+
 <!-- First Section with Clickable Accordion -->
 <div class="flex flex-col lg:flex-row bg-rose-900 opacity-100 fade-in">
   <!-- Left Section (Accordion + Title) -->
@@ -138,23 +147,22 @@
   <p class="text-2xl text-rose-700 max-w-3xl mx-auto leading-relaxed mb-10">Learn the art of flirting with our AI-powered chatbot. Get feedback in real-time and improve your conversation skills.</p>
 
   <!-- Button Section -->
-  <div class="flex justify-center space-x-6 mt-10">
+  <div class="flex justify-center space-x-4 mt-8">
     <SignedIn>
       <UserButton afterSignOutUrl="/" />
     </SignedIn>
     <SignedOut>
       <SignInButton
-              class="w-auto px-6 py-3 text-white bg-rose-900 mr-5 font-semibold text-xl rounded-lg shadow-lg hover:bg-rose-700 transition duration-200 transform hover:scale-105"
-      >
-        Sign in
+      class="w-auto text-rose-600 font-semibold py-1 text-lg underline decoration-2 bg-transparent hover:text-rose-700 mr-20">
+      Sign in
       </SignInButton>
       <SignUpButton
-              class="w-auto px-6 py-3 text-white bg-rose-900 font-semibold text-xl rounded-lg shadow-lg hover:bg-rose-700 transition duration-200 transform hover:scale-105"
-      >
-        Sign up
+      class="w-auto text-rose-600 font-semibold py-1 text-lg underline decoration-2 bg-transparent hover:text-rose-700">
+      Sign up
       </SignUpButton>
     </SignedOut>
   </div>
+</div>
 
 <!-- Master the Art of Conversation -->
 <div class="flex flex-col md:flex-row items-center py-20 bg-orange-100 fade-in">
@@ -193,7 +201,6 @@
     <p class="text-xl lg:text-2xl max-w-xl text-rose-700 leading-relaxed">With personalized feedback, track your progress and learn how to approach any situation with confidence.</p>
     <button class="mt-8 px-6 py-3 bg-white text-red-600 border border-red-600 text-lg font-semibold shadow-md hover:bg-red-600 hover:text-white transition ease-in-out duration-200 transform hover:scale-105">Tutorial</button>
   </div>
-</div>
 </div>
 <Footer/>
 </main>
