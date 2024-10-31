@@ -119,8 +119,9 @@
             container.addEventListener('mouseleave', () => hoverAnimation.reverse());
         });
     });
-    const onButtonClick = () => {
-        gsap.to(".panel", {
+    const onButtonClick = (page) => {
+        if(page === "chatbot"){
+            gsap.to(".panel", {
             x: -width,
             duration: 1,
             ease: "power2.inOut",
@@ -128,34 +129,65 @@
                 goto('/chatbot');
             }
         });
+        }
+        else if (page === "home"){
+            gsap.to(".panel", {
+            x: -width,
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => {
+                goto('/');
+            }
+        });
+        }
+        else if (page === "outfit"){
+            gsap.to(".panel", {
+            x: -width,
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => {
+                goto('/outfit-styler');
+            }
+        });
+        }
+        else if (page === "contact"){
+            gsap.to(".panel", {
+            x: -width,
+            duration: 1,
+            ease: "power2.inOut",
+            onComplete: () => {
+                goto('/contact');
+            }
+        });
+        }
     };
 </script>
 
 <main class="page">
     <div class="swipe-section">
-        <section class="panel" style="background-color: lightcoral">
-            <button class="image-container" id="container-1">
+        <section class="panel" style="background-color: #881337">
+            <button class="image-container" id="container-1"  on:click={() => {onButtonClick("home")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{home}" alt="a house"/>
                 <span class="headers">home</span>
             </button>
         </section>
-        <section class="panel" style="background-color: lightseagreen;">
-            <button class="image-container" id="container-2" on:click={onButtonClick}>
+        <section class="panel" style="background-color: #88136f;">
+            <button class="image-container" id="container-2" on:click={() => {onButtonClick("chatbot")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{chatbot}" alt="a chatbot"/>
                 <span class="headers">chatbot</span>
             </button>
         </section>
-        <section class="panel" style="background-color: lightblue;">
-            <button class="image-container" id="container-3">
+        <section class="panel" style="background-color: #5b1388;" >
+            <button class="image-container" id="container-3"  on:click={() => {onButtonClick("outfit")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{aboutus}" alt="a question mark"/>
                 <span class="headers">outfit styler</span>
             </button>
         </section>
-        <section class="panel" style="background-color: lightgoldenrodyellow;">
-            <button class="image-container" id="container-4">
+        <section class="panel" style="background-color: #251388;">
+            <button class="image-container" id="container-4"  on:click={() => {onButtonClick("contact")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{contactus}" alt="contact information"/>
                 <span class="headers">contact us</span>
