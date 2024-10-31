@@ -172,21 +172,21 @@
                 <span class="headers">home</span>
             </button>
         </section>
-        <section class="panel" style="background-color: #88136f;">
+        <section class="panel" style="background-color: #a02a3d">
             <button class="image-container" id="container-2" on:click={() => {onButtonClick("chatbot")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{chatbot}" alt="a chatbot"/>
                 <span class="headers">chatbot</span>
             </button>
         </section>
-        <section class="panel" style="background-color: #5b1388;" >
+        <section class="panel" style="background-color: #cc4e5c" >
             <button class="image-container" id="container-3"  on:click={() => {onButtonClick("outfit")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{aboutus}" alt="a question mark"/>
                 <span class="headers">outfit styler</span>
             </button>
         </section>
-        <section class="panel" style="background-color: #251388;">
+        <section class="panel" style="background-color: #f2a3b3">
             <button class="image-container" id="container-4"  on:click={() => {onButtonClick("contact")}}>
                 <span class="grey-rectangle"></span>
                 <img class="image" loading="lazy" src="{contactus}" alt="contact information"/>
@@ -254,10 +254,10 @@
     .headers {
         position: absolute;
         top: 40%; /* Center vertically within the image */
-        transform: translate(-50%, -75%); /* Center horizontally */
+        transform: translate(-60%, -20%); /* Center horizontally */
         font-family: "BreadleySans", sans-serif;
         color: #000000;
-        font-size: 7dvw;
+        font-size: 8dvh;
         z-index: 2; /* Above the image */
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional: add text shadow for readability */
     }

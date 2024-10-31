@@ -162,25 +162,21 @@
         </div>
         <div class="basis-5/6 h-full">
             <div class="mt-8 mr-8 ml-8 mb-16 p-8 bg-[#2F2F2F] flex flex-col h-5/6 rounded-lg">
-                <div bind:this={chatWindow} class="flex-grow-0 overflow-auto bg-gradient-to-r from-[#2F2F2F] to-[#1C1C1C] flex flex-col h-5/6 rounded-lg">
+                <div bind:this={chatWindow} class="flex-grow-0 overflow-auto flex flex-col h-5/6 rounded-lg">
                     {#if $chatMessages.length > 0}
                         {#each $chatMessages as msg}
                             {#if msg.type === "user"}
-                                <div in:fly={{ y: 200, duration: 2000 }}>
-                                    <div class="flex justify-end mb-4">
-                                        <div class="p-4 text-base text-slate-50	rounded-lg shadow-lg bg-[#65081F]" id="TextMessage">
-                                            <Message bind:this={removable} messageSent={msg.text}/>
-                                        </div>
+                                <div class="user-message" in:fly={{ y: 200, duration: 2000 }}>
+                                    <div id="TextMessage">
+                                        <Message bind:this={removable} messageSent={msg.text}/>
                                     </div>
                                 </div>
                             {/if}
-                            {#if msg.type === "bot"}    
-                                <div in:fly={{ y: 200, duration: 2000 }}>
-                                   <div class="flex justify-start mb-4 pb-4">
-                                       <div class="p-4 text-base text-slate-50 rounded-lg shadow-lg bg-[#3F3F3F] border border-[#4F4F4F]" id="TextMessage">
-                                           <Message bind:this={removable} messageSent={msg.text}/>
-                                       </div>
-                                   </div>
+                            {#if msg.type === "bot"}
+                                <div class="bot-message" in:fly={{ y: 200, duration: 2000 }}>
+                                    <div id="TextMessage">
+                                        <Message bind:this={removable} messageSent={msg.text}/>
+                                    </div>
                                 </div>
                             {/if}
                         {/each}
@@ -188,8 +184,15 @@
                 </div>
                 <div class="mt-auto flex items-center">
                     <input type="text" bind:value={userMessage} readonly="{readInputOnly}" id="sendbutton"
-                        class="bg-[#E5E7EB] w-full p-4 border border-[#D1D5DB] rounded-md outline-none text-base text-black placeholder-gray-500 shadow-inner"
-                        placeholder="Type your message...">
+                           class="bg-[#E5E7EB] w-full p-4 border border-[#D1D5DB] rounded-md outline-none text-base text-black placeholder-gray-500 shadow-inner"
+                           placeholder="Type your message..."
+                           on:keydown={(e) => {
+                                if (e.key === 'Enter') {
+                                    handleSubmit();
+                                    userMessage = ''; // Clears the input field
+                                }
+                            }}
+                    >
                     <button on:click={handleSubmit}
                         class="ml-4 w-16 h-12 bg-[#2563EB] border-[#1E40AF] rounded-md text-white text-base cursor-pointer hover:bg-[#1E40AF] shadow-md">Send</button>
                 </div>
@@ -199,15 +202,41 @@
 </main>
 
 <style>
-    .preferences-panel {
-        width: 16.666667%;
-        transition: width 0.5s ease-in-out;
+    /* Adjusted styling for user messages */
+    .user-message {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0.75rem;
+        margin-right: 3%;
     }
-    .h-full {
-        height: 100%;
+
+    /* Bot messages stay with original spacing */
+    .bot-message {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 0.75rem;
     }
-    .h-screen {
-        height: 100vh;
+
+    /* Responsive styling for message bubbles */
+    #TextMessage {
+        padding: 0.75rem 1rem;
+        border-radius: 1.25rem;
+        max-width: 75%;
+        font-size: 1rem;
+        line-height: 1.4;
+        word-break: break-word;
+    }
+
+    /* User and bot message colors */
+    .user-message #TextMessage {
+        background-color: #65081F;
+        color: #FFFFFF;
+    }
+
+    .bot-message #TextMessage {
+        background-color: #3F3F3F;
+        color: #FFFFFF;
+        border: 0.063rem solid #4F4F4F;
     }
 </style>
 
