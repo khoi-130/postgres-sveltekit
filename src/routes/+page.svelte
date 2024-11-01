@@ -7,12 +7,9 @@
   import SignInButton from "clerk-sveltekit/client/SignInButton.svelte";
   import SignUpButton from "clerk-sveltekit/client/SignUpButton.svelte";
   import UserButton from "clerk-sveltekit/client/UserButton.svelte";
-
-
-  // Import GSAP globally
   import { gsap } from "gsap";
-    import Header from "$lib/Components/Header.svelte";
-    import Footer from "$lib/Components/Footer.svelte";
+  import Header from "$lib/Components/Header.svelte";
+  import Footer from "$lib/Components/Footer.svelte";
 
   const navigateToFeature = () => {
     goto("./feature")
@@ -76,6 +73,7 @@
 </script>
 
 <main>
+  <Header/>
 
 <!-- First Section with Clickable Accordion -->
 <div class="flex flex-col lg:flex-row bg-rose-900 opacity-100 fade-in">
@@ -147,18 +145,20 @@
   <p class="text-2xl text-rose-700 max-w-3xl mx-auto leading-relaxed mb-10">Learn the art of flirting with our AI-powered chatbot. Get feedback in real-time and improve your conversation skills.</p>
 
   <!-- Button Section -->
-  <div class="flex justify-center space-x-4 mt-8">
+  <div class="flex justify-center space-x-6 mt-10">
     <SignedIn>
       <UserButton afterSignOutUrl="/" />
     </SignedIn>
     <SignedOut>
       <SignInButton
-      class="w-auto text-rose-600 font-semibold py-1 text-lg underline decoration-2 bg-transparent hover:text-rose-700 mr-20">
-      Sign in
+              class="w-auto px-6 py-3 text-white bg-rose-900 font-semibold text-xl rounded-lg shadow-lg hover:bg-rose-700 transition duration-200 transform hover:scale-105"
+      >
+        Sign in
       </SignInButton>
       <SignUpButton
-      class="w-auto text-rose-600 font-semibold py-1 text-lg underline decoration-2 bg-transparent hover:text-rose-700">
-      Sign up
+              class="w-auto px-6 py-3 text-white bg-rose-900 font-semibold text-xl rounded-lg shadow-lg hover:bg-rose-700 transition duration-200 transform hover:scale-105"
+      >
+        Sign up
       </SignUpButton>
     </SignedOut>
   </div>

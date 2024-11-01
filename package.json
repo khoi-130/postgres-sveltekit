@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.0.0",
-    "@sveltejs/adapter-vercel": "^4.0.3",
-    "@sveltejs/kit": "^2.0.6",
+    "@sveltejs/adapter-vercel": "^5.4.6",
+    "@sveltejs/kit": "^2.7.3",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@tsconfig/svelte": "^3.0.0",
     "autoprefixer": "^10.4.14",
@@ -30,8 +30,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@cometchat/chat-sdk-javascript": "^4.0.10",
     "@emailjs/browser": "^4.4.1",
-    "@vercel/postgres": "^0.5.1",
+    "@vercel/postgres": "^0.10.0",
     "autoprefixer": "^10.4.19",
     "clerk-sveltekit": "^0.4.2",
     "dotenv": "^16.4.5",
