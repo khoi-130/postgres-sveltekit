@@ -3,15 +3,9 @@
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
   
-  
-
-  
     const navigateToMainPage = () => {
       goto("/");
     };
-  
-
-  
   </script>
 <main>
     <header class="flex justify-between items-center px-3 py-1 bg-fixed bg-cover bg-center">  
