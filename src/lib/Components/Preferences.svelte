@@ -1,10 +1,10 @@
 <script>
-    import { writable } from 'svelte/store';
+    import { writable, derived } from 'svelte/store';
     // @ts-ignore
     import { profileShared, showPreferences } from '../../stores';
     import { onMount } from 'svelte';
     import gsap from 'gsap';
-  import { fade } from 'svelte/transition';
+    import { fade } from 'svelte/transition';
   
   // You can subscribe to the store if needed
     /**
@@ -29,15 +29,16 @@
     export let politeness = writable(1);
     export let spicyness = writable(1);
     export let gender = writable('Not Specified');
+    export let scenario = writable('Not Set');
 
     // Define a reactive array of slider configurations
     let sliders = [
-        { label: 'Age', store: age, min: 18, max: 100, value: 18 },
-        { label: 'Confidence', store: confidence, min: 1, max: 5, value: 1 },
-        { label: 'Playfulness', store: playfulness, min: 1, max: 5, value: 1 },
-        { label: 'Warmth', store: warmth, min: 1, max: 5, value: 1 },
-        { label: 'Politeness', store: politeness, min: 1, max: 5, value: 1 },
-        { label: 'Spiciness', store: spicyness, min: 1, max: 5, value: 1 }
+        { label: 'Age', store: age, min: 18, max: 100, value: $profileShared.age },
+        { label: 'Confidence', store: confidence, min: 1, max: 5, value: $profileShared.confidence },
+        { label: 'Playfulness', store: playfulness, min: 1, max: 5, value: $profileShared.playfulness },
+        { label: 'Warmth', store: warmth, min: 1, max: 5, value: $profileShared.warmth },
+        { label: 'Politeness', store: politeness, min: 1, max: 5, value: $profileShared.politeness },
+        { label: 'Spiciness', store: spicyness, min: 1, max: 5, value: $profileShared.spiciness }
     ];
 
     // Function to update slider value and sync with corresponding store
@@ -50,22 +51,23 @@
         sliders[sliderIndex].store.set(newValue);
     }
 
-     async function savePreferences() {
-        // Compile current values from stores
-        const currentPreferences = {
-            age: $age,
-            confidence: $confidence,
-            playfulness: $playfulness,
-            warmth: $warmth,
-            politeness: $politeness,
-            spiciness: $spicyness,
-            gender: $gender
-        };
+    async function savePreferences() {
+       // Compile current values from stores
+       const currentPreferences = {
+           age: $age,
+           confidence: $confidence,
+           playfulness: $playfulness,
+           warmth: $warmth,
+           politeness: $politeness,
+           spiciness: $spicyness,
+           gender: $gender,
+           scenario: $scenario
+       };
 
-        console.log("Saving preferences:", currentPreferences);
-        profileShared.update(() => {
-            return currentPreferences
-        })
+    console.log("Saving preferences:", currentPreferences);
+    profileShared.update(() => {
+        return currentPreferences
+    })
 
         // Example: Save the preferences (e.g., to a backend server or local storage)
         // For now, we're just logging to the console
@@ -94,7 +96,7 @@
      export let openPreferences;
 </script>
 
-<div class="flex flex-col space-y-10 p-4">
+<div class="flex flex-col p-4">
     <button class="text-white hover:text-gray-400 focus:outline-none" on:click={() => togglePreferences()}>
         {#if isPreferencesVisible}
         <!-- Close icon (X) -->
@@ -134,6 +136,17 @@
                   <option value="Other">Other</option>
               </select>
           </div>
+          <div class="mt-4">
+            <label for="scenario-select" class="block text-white font-medium mb-2">Scenario</label>
+            <select id="gender-select" bind:value={$scenario} class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                <option value="Not Set">Not Set</option>
+                <option value="Library">Library</option>
+                <option value="Cafe">Café</option>
+                <option value="Park">Park</option>
+                <option value="Weight Lifting Gym">Gym</option>
+                <option value="Pickle Ball">Pickle ball</option>
+            </select>
+        </div>
           <button class="px-4 py-2 bg-blue-500 text-white rounded-md" on:click={savePreferences}>
               Save Preferences
           </button>

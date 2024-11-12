@@ -7,6 +7,7 @@ export let profileShared = writable({
     warmth: 1,
     politeness: 1,
     spiciness: 1,
-    gender: "Not specified"
+    gender: "Not specified",
+    scenario: 1
 })
 export const showPreferences = writable(false);
