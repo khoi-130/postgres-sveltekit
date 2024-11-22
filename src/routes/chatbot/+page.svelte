@@ -78,7 +78,27 @@
         }
     };
 
-
+    async function callFeedbackGPT (convHistory: ConversationEntry[], prefs: any, scene: any) {
+    try {
+        const response = await fetch('/api/feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                conversationHistory: convHistory,
+                preferences: prefs,
+                scenario: scene
+            })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to call POST endpoint');
+        }
+        return await response.json();
+        } catch (error) {
+            console.error('Error calling POST endpoint:', error);
+        }
+    };
 
     const callScenarioGPT = async (scenario: any)=>{
         try {
