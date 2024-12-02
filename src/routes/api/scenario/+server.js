@@ -33,7 +33,7 @@ export const POST = async ({ request }) => {
             
     }
     //console.log("Scenario: ", environmentScenario)
-
+    
     // Initialize the prompt for the system message only if there's no existing conversation history
     let initialPrompt = `You are going to create an descriptive scene of the ${environmentScenario} 
     where you meet someone you are interested in and want to start a conversation.
@@ -52,7 +52,7 @@ export const POST = async ({ request }) => {
     // Prepare the response object
     const creation = completion.choices[0].message.content
 
-    //console.log("Creation ", creation)
+    console.log("Creation ", creation)
     const response = {
         scenario: environmentScenario,
         scene: creation

@@ -163,22 +163,30 @@
     }
 
     let theScene = ""
-    let theScenario = ""
+    let theScenario = "Not Set"
 
     const createScenario = async () => {
-    if (prefProfile.scenario != 1) {
+    if (prefProfile.scenario != 1 && prefProfile.scenario != "Not Set") {
+        console.log("prefProfile", prefProfile)
         const theScenario2 = await callScenarioGPT(prefProfile.scenario);
         
-        if (theScenario2 && theScenario2.scene) {
+        if (theScenario2) {
             theScene = theScenario2.scene; // Access the 'scene' property
             theScenario = theScenario2.scenario; // Access the 'scene' property
             console.log("SCENARIO2 Scene:", theScene); // Log the scene description
             console.log("SCENARIO2 Environment:", theScenario); // Log the environment scenario
         } else {
             console.log("SCENARIO2 was undefined or did not contain scene");
+            theScenario = "Not Set"
         }
         return theScenario2
-    }};
+    }
+    else{
+        theScene = ""
+        theScenario = "Not Set"
+        return "Not Set"
+    }
+};
 
 
 
@@ -197,8 +205,9 @@
         conversationHistory = []
         counter = 0
         firstTime = false
-        getResponse(createScenario())
-        console.log("UPDATED")
+        let res = getResponse(createScenario())
+        //console.log("res scenario", res)
+        //console.log("UPDATED")
     }
     $: $profileShared, reloadComponent()
   
@@ -331,9 +340,6 @@
                             <br>
                             {theScene}
                         </div>
-                    </div>
-                    <div class="basis-1/2 h-full text-center">
-                        Conversation Feedback
                     </div>
                 </div>
             </div>
