@@ -4,8 +4,6 @@
     import { onMount } from "svelte";
     import { gsap } from "gsap";
   
-
-  
     const navigateToMainPage = () => {
       goto("/");
     };
@@ -19,7 +17,6 @@
             ease: "power2.out" // easing effect
         });
     });
-  
   </script>
 <main>
     <header class="flex justify-between items-center px-3 py-1 bg-fixed bg-cover bg-center">
