@@ -40,13 +40,19 @@
         { label: 'Politeness', store: politeness, min: 1, max: 5, value: $profileShared.politeness },
         { label: 'Spiciness', store: spicyness, min: 1, max: 5, value: $profileShared.spiciness }
     ];
-
+    /*
+    let dropboxes = [
+        {label: 'Gender', store: gender, default: "Not Specified", value: $profileShared.gender},
+        {label: 'Scenario', store: gender, default: "Not Set", value: $profileShared.scenario},
+    ]*/
     // Function to update slider value and sync with corresponding store
     // @ts-ignore
     function updateValue(sliderIndex, newValue) {
         const updatedSliders = [...sliders];
         updatedSliders[sliderIndex] = { ...updatedSliders[sliderIndex], value: newValue };
         sliders = updatedSliders;
+        //const updatedDropboxes = [...dropboxes];
+        //updatedDropboxes[]
 
         sliders[sliderIndex].store.set(newValue);
     }
