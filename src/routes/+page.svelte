@@ -11,6 +11,10 @@
   import Header from "$lib/Components/Header.svelte";
   import Footer from "$lib/Components/Footer.svelte";
 
+  const openYouTubeVideo = () => {
+    window.open("https://www.youtube.com/watch?v=4tkiC-jSYco", "_blank");
+  };
+
   const navigateToFeature = () => {
     goto("./feature")
   }
@@ -199,7 +203,8 @@
   <div class="relative z-10 flex flex-col justify-center items-center lg:items-start text-center lg:text-left h-full lg:w-1/2  p-5 lg:p-10">
     <h2 class="text-5xl lg:text-6xl italic leading-tight mb-10">Become The Ultimate Learner</h2>
     <p class="text-xl lg:text-2xl max-w-xl text-rose-700 leading-relaxed">With personalized feedback, track your progress and learn how to approach any situation with confidence.</p>
-    <button class="mt-8 px-6 py-3 bg-white text-red-600 border border-red-600 text-lg font-semibold shadow-md hover:bg-red-600 hover:text-white transition ease-in-out duration-200 transform hover:scale-105">Tutorial</button>
+    <button class="mt-8 px-6 py-3 bg-white text-red-600 border border-red-600 text-lg font-semibold shadow-md hover:bg-red-600 hover:text-white transition ease-in-out duration-200 transform hover:scale-105"
+    on:click={openYouTubeVideo}>Tutorial</button>
   </div>
 </div>
 <Footer/>

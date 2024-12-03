@@ -25,8 +25,8 @@
       stagger: 0.3,
     });
   });
-  const navigateToSignUp = () => {
-    goto("./sign-up");
+  const navigateToChatBot = () => {
+    goto("./chatbot");
   };
 </script>
 
@@ -51,7 +51,7 @@
         improve your skills, our chatbot is here to help.
       </p>
       <button
-        on:click={navigateToSignUp}
+        on:click={navigateToChatBot}
         class="bg-red-500 text-white font-bold py-3 px-8 text-xl rounded-full shadow-md focus:outline-none focus:shadow-outline active:scale-95 transition duration-150 ease-in-out hover:bg-red-600"
       >
         Get Started
